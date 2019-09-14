@@ -1,0 +1,19 @@
+{
+  "name": "kpg-tools",
+  "version": "1.0.0",
+  "description": "A collection of useful tool for use with D&D and MTG",
+  "main": "index.js",
+  "repository": "https://github.com/KaemonIsland/kpg-tools.git",
+  "author": "Kaemon Lovendahl <k-manskrazy@hotmail.com>",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": "12.10.0",
+    "yarn": "1.17.3"
+  },
+  "scripts": {
+    "build": "yarn --cwd client install && yarn --cwd client build",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "yarn build && yarn deploy"
+  }
+}
