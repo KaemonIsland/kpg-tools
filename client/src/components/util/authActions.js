@@ -1,32 +1,28 @@
 import axios from 'axios'
 import { authRequest, authSuccess, authFailure, logout } from '../../reducers/auth';
 
-export const registerUser = (dispatch, user) => {
-  axios.post('/api/v1/users', { user: {...user}})
-    .then(response => {
-      console.log("Create User: ", response)
-      authenticate(dispatch, response.data)
-    })
-    .then(response => console.log("After User Createion: ", response))
-    .catch(errors => console.log("Errors Registering: ", errors))
+export const registerUser = async (dispatch, user) => {
+  try {
+    await axios.post('/api/v1/users', { user: {...user}})
+    authenticate(dispatch, user)
+  } catch (error) {
+    console.log("Errors Registering: ", error)
+  }
 }
 
-export const authenticate = (dispatch, user) => {
-  console.log("Authentication User Param: ", user)
+export const authenticate = async (dispatch, user) => {
   dispatch(authRequest())
-  axios.post('/authenticate', user)
-    .then(response => {
-      console.log("Auth Response: ", response)
-      let authToken = response.data.auth_token
-      localStorage.setItem('JWT', `${authToken}`)
-      console.log("AuthToken: ", authToken)
-      dispatch(authSuccess(user, authToken))
-    })
-    .catch(errors => {
-      console.log("Auth Failed: ", errors)
-      dispatch(authFailure(errors))
+
+  try {
+    const { data } = await axios.post('/authenticate', user)
+    const authToken = data.auth_token
+
+    localStorage.setItem('JWT', `${authToken}`)
+    dispatch(authSuccess(user, authToken))
+  } catch (error) {
+    dispatch(authFailure(error))
       localStorage.clear()
-    })
+  }
 }
 
 export const logoutUser = (dispatch) => {

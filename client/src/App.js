@@ -18,12 +18,6 @@ function App() {
 
   const initialState = useContext(UserContext)
   const [{ name, email, JWT, loggedIn }, dispatch] = useReducer(authReducer, initialState)
-  console.group()
-  console.log("Name: ", name)
-  console.log("Email: ", email)
-  console.log("JWT: ", JWT)
-  console.log("Logged In: ", loggedIn)
-  console.groupEnd()
 
   return (
     <UserContext.Provider value={{name, email, JWT, loggedIn}} >

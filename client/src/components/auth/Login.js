@@ -30,10 +30,7 @@ const loginFormConfig = {
 }
 
 const Login = ({ dispatch }) => {
-
     const [formInput, setFormInput] = useState(loginFormConfig)
-
-    
 
     const handleChange = e => {
         const {name, value} = e.target

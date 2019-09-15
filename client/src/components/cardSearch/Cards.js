@@ -20,7 +20,6 @@ const CardsContainer = styled.div`
 const Cards = () => {
 
     const { cards, loading } = useContext(CardsContext)
-    console.log('Cards: ', cards, 'Loading: ', loading)
 
     return (
         <>
