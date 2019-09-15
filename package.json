@@ -12,7 +12,7 @@
     "yarn": "1.17.3"
   },
   "scripts": {
-    "build": "yarn --cwd client install && yarn --cwd client build",
+    "build": "cd client && yarn isntall && yarn build",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "yarn build && yarn deploy"
   }
