@@ -2,7 +2,7 @@ import axios from 'axios'
 import { authRequest, authSuccess, authFailure, logout } from '../../reducers/auth';
 
 export const registerUser = (dispatch, user) => {
-  axios.post('http://localhost:3001/api/v1/users', { user: {...user}})
+  axios.post('/api/v1/users', { user: {...user}})
     .then(response => {
       authenticate(dispatch, response.data)
     })
@@ -11,7 +11,7 @@ export const registerUser = (dispatch, user) => {
 
 export const authenticate = (dispatch, user) => {
   dispatch(authRequest())
-  axios.post('http://localhost:3001/authenticate', user)
+  axios.post('/authenticate', user)
     .then(response => {
       let authToken = response.data.auth_token
       localStorage.setItem('JWT', `${authToken}`)
