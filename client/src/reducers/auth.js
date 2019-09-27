@@ -14,6 +14,7 @@ export const authFailure = errors => ({ type: AUTHENTICATION_FAILURE, errors })
 export const logout = () => ({ type: LOGOUT })
 
 const initialState = {
+    id: undefined,
     name: 'Guest',
     email: 'example@email.com',
     JWT: '',
@@ -23,9 +24,9 @@ const initialState = {
 export const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case AUTHENTICATION_REQUEST:
-            return { ...state, loggedIn: false}
+            return { ...state}
         case AUTHENTICATION_SUCCESS:
-            return { name: action.user.name, email: action.user.email, JWT: action.token, loggedIn: true }
+            return { user: {...action.user}, JWT: action.token, loggedIn: true }
         case AUTHENTICATION_FAILURE:
             return {}
         case LOGOUT:

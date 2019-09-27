@@ -9,7 +9,7 @@ const root = document.getElementById('root')
 
 ReactDOM.render(
     <Router>
-            <App />
+        <App />
     </Router>
     , root);
 
