@@ -5,8 +5,9 @@ import Cards from '../cardSearch/Cards'
 import Button from '../layout/Button'
 import { cardReducer } from '../../reducers/cards'
 import LazyLoad from 'react-lazyload'
+import { getAllCards } from '../util/MtgApi'
 
-const CardSearchPage = () => {
+const CardSearchPage = ({ jwt }) => {
     const initialState = useContext(CardsContext)
     const [{cards, loading}, dispatch] = useReducer(cardReducer, initialState)
 
@@ -16,6 +17,7 @@ const CardSearchPage = () => {
 
     return (
       <CardsContext.Provider value={{ cards, loading, dispatch }}>
+        <button onClick={() => getAllCards(jwt)}>Get All Cards!</button>
         <div className="container-fluid">
           <h1>Card Search</h1>
           <CardSearchForm page={page} setPage={setPage} />

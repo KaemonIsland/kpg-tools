@@ -58,6 +58,5 @@ export const getUser = async (dispatch, jwtToken) => {
 
 export const setUser = (dispatch, jwtToken) => {
   const user = parseJwt(jwtToken)
-  console.log(user)
   dispatch(authSuccess(user, jwtToken))
 }

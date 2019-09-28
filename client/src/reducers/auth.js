@@ -21,12 +21,12 @@ const initialState = {
     loggedIn: true
 }
 
-export const authReducer = (state = initialState, action) => {
-    switch(action.type) {
+export const authReducer = (state = initialState, { type, user, token}) => {
+    switch(type) {
         case AUTHENTICATION_REQUEST:
             return { ...state}
         case AUTHENTICATION_SUCCESS:
-            return { user: {...action.user}, JWT: action.token, loggedIn: true }
+            return { user: {...user}, JWT: token, loggedIn: true }
         case AUTHENTICATION_FAILURE:
             return {}
         case LOGOUT:

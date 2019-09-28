@@ -7,6 +7,6 @@
       password: 'foobar',
       password_confirmation: 'foobar'
     )
-  end
+end
   
-  print "10 users created"
+print "10 users created"
